@@ -1,6 +1,7 @@
-import React from 'react';
-import { Download, Mail, Github, Linkedin, MapPin, Coffee } from 'lucide-react';
-import ronak from "../imges/ronak.jpg"
+import React from "react";
+import { Download, Mail, Github, Linkedin, MapPin, Coffee } from "lucide-react";
+import ronak from "../imges/ronak.jpg";
+import ronakResume from "../imges/Ronak_cv.pdf";
 
 const Hero: React.FC = () => {
   return (
@@ -22,7 +23,9 @@ const Hero: React.FC = () => {
             <div className="text-center lg:text-left animate-fade-in-up">
               <div className="flex items-center justify-center lg:justify-start gap-2 mb-4">
                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                <span className="text-green-400 text-sm font-medium">Available for work</span>
+                <span className="text-green-400 text-sm font-medium">
+                  Available for work
+                </span>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
@@ -49,17 +52,26 @@ const Hero: React.FC = () => {
               </div>
 
               <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                I craft beautiful, scalable web applications with modern technologies. Passionate about creating exceptional user experiences and robust backend solutions.
+                I craft beautiful, scalable web applications with modern
+                technologies. Passionate about creating exceptional user
+                experiences and robust backend solutions.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start items-center mb-8">
-                <button className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg hover:shadow-xl">
+                <a
+                  href={ronakResume}
+                  download="Ronak_Prajapati_Resume.pdf"
+                  className="group bg-gradient-to-r from-blue-600 to-purple-600 text-white px-8 py-4 rounded-full hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 flex items-center gap-2 shadow-lg hover:shadow-xl"
+                >
                   <Download size={20} className="group-hover:animate-bounce" />
                   Download Resume
-                </button>
+                </a>
+
                 <button
                   onClick={() =>
-                    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
+                    document
+                      .querySelector("#contact")
+                      ?.scrollIntoView({ behavior: "smooth" })
                   }
                   className="border-2 border-purple-400 text-purple-400 px-8 py-4 rounded-full hover:bg-purple-400 hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center gap-2 backdrop-blur-sm"
                 >
