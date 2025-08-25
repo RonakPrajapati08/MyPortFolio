@@ -1,5 +1,6 @@
 import React from 'react';
 import { Download, Mail, Github, Linkedin, MapPin, Coffee } from 'lucide-react';
+import ronak from "../imges/ronak.jpg"
 
 const Hero: React.FC = () => {
   return (
@@ -96,7 +97,7 @@ const Hero: React.FC = () => {
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-spin-slow p-1">
                     <div className="w-full h-full rounded-full bg-slate-900 p-2">
                       <img
-                        src="/src/imges/ronak.jpg"
+                        src={ronak}
                         alt="Alex Johnson - Full Stack Developer"
                         className="w-full h-full object-cover rounded-full"
                       />

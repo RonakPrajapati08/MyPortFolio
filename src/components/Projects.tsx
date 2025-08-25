@@ -1,12 +1,13 @@
 import React from 'react';
 import { ExternalLink, Github, Calendar, Users, TrendingUp } from 'lucide-react';
+import project from "../imges/E-commerce.png"
 
 const Projects: React.FC = () => {
   const projects = [
     {
       title: "E-Commerce Platform",
       description: "A responsive e-commerce frontend platform with product listing, cart management, and modern UI/UX built using React ecosystem.",
-      image: "/src/imges/E-commerce.png",
+      image: project,
       tags: ["ReactJs", "TypeScript", "Redux", "Tailwind CSS", "JavaScript", "Git"],
       // stats: [
       //   { icon: <Users size={16} />, value: "10K+", label: "Users" },
