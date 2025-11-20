@@ -1,6 +1,6 @@
 import React from "react";
 import { Download, Mail, Github, Linkedin, MapPin, Coffee } from "lucide-react";
-import ronak from "../imges/ronak.jpg";
+import ronak from "../imges/ronak2.jpg";
 import ronakResume from "../imges/Ronak_cv.pdf";
 
 const Hero: React.FC = () => {
@@ -104,13 +104,13 @@ const Hero: React.FC = () => {
             <div className="flex justify-center lg:justify-end animate-fade-in-right">
               <div className="relative">
                 {/* Profile image container */}
-                <div className="relative w-80 h-80 md:w-96 md:h-96">
+                <div className="relative w-80 h-80 md:w-96 md:h-96 spin-container">
                   {/* Animated border */}
                   <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-spin-slow p-1">
                     <div className="w-full h-full rounded-full bg-slate-900 p-2">
                       <img
                         src={ronak}
-                        alt="Alex Johnson - Full Stack Developer"
+                        alt="Ronak Prajapati - Full Stack Developer"
                         className="w-full h-full object-cover rounded-full"
                       />
                     </div>
@@ -151,7 +151,7 @@ const Hero: React.FC = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes fade-in-up {
           from {
             opacity: 0;
@@ -238,6 +238,10 @@ const Hero: React.FC = () => {
         .animation-delay-4000 {
           animation-delay: 4s;
         }
+          .spin-container:hover .animate-spin-slow {
+  animation-play-state: paused;
+}
+
       `}</style>
     </section>
   );

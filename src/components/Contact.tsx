@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,12 +18,28 @@ const Contact: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log('Form submitted:', formData);
-    alert('Thank you for your message! I\'ll get back to you soon.');
-    setFormData({ name: '', email: '', subject: '', message: '' });
+    // console.log('Form submitted:', formData);
+    // alert('Thank you for your message! I\'ll get back to you soon.');
+    // setFormData({ name: '', email: '', subject: '', message: '' });
+    try {
+      const response = await axios.post(
+        "https://render-live.onrender.com/send-email",  // Replace with real backend URL
+        formData
+      );
+
+      if (response.data.success) {
+        toast.success("Message sent successfully! 🎉");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        toast.error("Failed to send message ❌");
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Server error! Please try again ⚠️");
+    }
   };
 
   const contactInfo = [
@@ -53,7 +71,7 @@ const Contact: React.FC = () => {
         <div className="absolute bottom-10 right-10 w-60 h-60 bg-purple-500 rounded-full filter blur-3xl"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-pink-500 rounded-full filter blur-3xl"></div>
       </div>
-      
+
       <div className="container mx-auto px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
@@ -71,20 +89,22 @@ const Contact: React.FC = () => {
           </div>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <div>
-              <div className="bg-white/80 backdrop-blur-md p-8 rounded-3xl shadow-xl border border-white/50 mb-8">
-                <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
-                  <MessageCircle className="w-6 h-6 text-blue-600 mr-3" />
-                  Let's Talk
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">
-                  I'm always interested in hearing about new opportunities, 
-                  whether it's a full-time position, freelance project, or just a chat about technology.
-                </p>
-                
+            <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl border border-white/50">
+              <div className='p-4'>
+                <div className='p-3'>
+                  <h3 className="text-2xl font-semibold text-gray-800 mb-6 flex items-center">
+                    <MessageCircle className="w-6 h-6 text-blue-600 mr-3" />
+                    Let's Talk
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed mb-6 text-justify">
+                    I'm always interested in hearing about new opportunities,
+                    whether it's a full-time position, freelance project, or just a chat about technology.
+                  </p>
+                </div>
+
                 <div className="space-y-6">
                   {contactInfo.map((info, index) => (
-                    <a 
+                    <a
                       key={index}
                       href={info.link}
                       className="flex items-center p-4 bg-white/50 rounded-xl hover:bg-white/70 transition-all duration-200 border border-white/30 hover:scale-105 transform"
@@ -103,7 +123,7 @@ const Contact: React.FC = () => {
                 <div className="mt-8 p-6 bg-gradient-to-r from-blue-50/50 to-purple-50/50 rounded-xl border border-white/30">
                   <h4 className="font-semibold text-gray-800 mb-2">Response Time</h4>
                   <p className="text-gray-600 text-sm">
-                    I typically respond to emails within 24 hours. For urgent matters, 
+                    I typically respond to emails within 24 hours. For urgent matters,
                     feel free to give me a call.
                   </p>
                 </div>

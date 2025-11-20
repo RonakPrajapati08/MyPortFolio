@@ -6,6 +6,8 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import WhatsAppButton from './inquiey/WhatsAppButton'; // Import the WhatsAppButton component
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Skills />
         <Projects />
         <Contact />
+        <WhatsAppButton /> {/* Add the WhatsAppButton component */}
+        <Toaster position="top-right" reverseOrder={false} />
       </main>
       <Footer />
     </div>
