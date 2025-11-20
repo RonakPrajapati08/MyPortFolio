@@ -29,7 +29,7 @@ Email: ${email}
 Subject: ${subject}x
 Message: ${message}
     `,
-    };
+    }; 
 
     try {
         await transporter.sendMail(mailOptions);
