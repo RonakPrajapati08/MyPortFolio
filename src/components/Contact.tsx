@@ -20,14 +20,11 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission logic here
-    // console.log('Form submitted:', formData);
-    // alert('Thank you for your message! I\'ll get back to you soon.');
-    // setFormData({ name: '', email: '', subject: '', message: '' });
     try {
       const response = await axios.post(
         "https://myportfolio-yx9s.onrender.com/send-email",  // Replace with real backend URL
-        formData
+        formData,
+        { headers: { "Content-Type": "application/json" }, timeout: 0, }
       );
 
       if (response.data.success) {
