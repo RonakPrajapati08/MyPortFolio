@@ -44,7 +44,7 @@ export default defineConfig({
     }
   })
   ],
-  base: "https://ronakprajapati.github.io/MyPortFolio/",
+  base: "https://ronakprajapati08.github.io/MyPortFolio/",
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
