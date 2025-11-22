@@ -7,9 +7,11 @@ const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     subject: '',
     message: ''
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -20,6 +22,8 @@ const Contact: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);  // START LOADING
+
     try {
       const response = await axios.post(
         "https://myportfolio-yx9s.onrender.com/send-email",  // Replace with real backend URL
@@ -29,13 +33,15 @@ const Contact: React.FC = () => {
 
       if (response.data.success) {
         toast.success("Thank you! Your message has been sent successfully. I'll get back to you soon. 🎉", { duration: 5000 });
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", phone: '', subject: "", message: "" });
       } else {
         toast.error("Failed to send message ❌");
       }
     } catch (error) {
       console.error(error);
       toast.error("Server error! Please try again ⚠️");
+    } finally {
+      setLoading(false);  // STOP LOADING
     }
   };
 
@@ -163,6 +169,25 @@ const Contact: React.FC = () => {
                 </div>
 
                 <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    pattern="[0-9]{10}"   // Only 10 digit validation
+                    maxLength={10}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200 bg-white/70 backdrop-blur-sm"
+                    placeholder="Enter phone number"
+                  />
+                </div>
+
+
+                <div>
                   <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                     Subject
                   </label>
@@ -196,11 +221,41 @@ const Contact: React.FC = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 flex items-center justify-center gap-2 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
-                >
-                  <Send size={20} />
-                  Send Message
+                  disabled={loading}
+                  className={`w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl 
+                              transition-all duration-200 flex items-center justify-center gap-2 font-semibold shadow-lg hover:shadow-xl 
+                              transform hover:scale-105 ${loading ? "opacity-70 cursor-not-allowed" : ""}`}>
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                      <svg
+                        className="animate-spin h-5 w-5 text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                        ></path>
+                      </svg>
+                      Sending...
+                    </span>
+                  ) : (
+                    <>
+                      <Send size={20} /> Send Message
+                    </>
+                  )}
                 </button>
+
               </form>
             </div>
           </div>

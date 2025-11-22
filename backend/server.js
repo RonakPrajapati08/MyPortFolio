@@ -25,7 +25,7 @@
 //       // INSTANT RESPONSE (Prevents Render timeout)
 //     res.json({ success: true, msg: "Message received. Email sending..." });
 
-    
+
 
 //    const mailOptions = {
 //   from: process.env.EMAIL,
@@ -34,7 +34,7 @@
 //   html: `
 //   <div style="font-family: Arial, sans-serif; padding: 20px; background:#f6f6f6;">
 //     <div style="max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 10px;">
-      
+
 //     <div style="text-align:center; margin-bottom:25px;">
 //         <h2 style="color:#4F46E5; text-align:center;">📩 New Contact Message</h2>
 //         <p style="color:#6b7280; font-size:11px; margin-top:8px;">
@@ -113,7 +113,7 @@ app.get("/", (req, res) => {
 
 // Contact Form Email
 app.post("/send-email", async (req, res) => {
-  const { name, email, subject, message } = req.body;
+  const { name, email, phone, subject, message } = req.body;
 
   try {
     // Send email via Resend
@@ -137,6 +137,7 @@ app.post("/send-email", async (req, res) => {
 
           <p><strong>Name:</strong> ${name}</p>
           <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Phone:</strong> <a href="tel:${phone}">${phone}</a></p>
           <p><strong>Subject:</strong> ${subject}</p>
           <p style="margin-top: 15px;"><strong>💬 Message:</strong></p>
           <div style="
