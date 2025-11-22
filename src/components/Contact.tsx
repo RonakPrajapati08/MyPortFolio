@@ -28,7 +28,7 @@ const Contact: React.FC = () => {
       );
 
       if (response.data.success) {
-        toast.success("Message sent successfully! 🎉");
+        toast.success("Thank you! Your message has been sent successfully. I'll get back to you soon. 🎉", { duration: 5000 });
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
         toast.error("Failed to send message ❌");
